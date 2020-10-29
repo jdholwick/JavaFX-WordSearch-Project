@@ -1,6 +1,8 @@
-package sample;
+package wordsearch;
 
 import javafx.event.ActionEvent;
+
+import java.awt.event.MouseEvent;
 
 public class Controller {
 
@@ -12,6 +14,10 @@ public class Controller {
         System.out.println("Word Search will exit when clicked...");
         System.exit(0);
     }
+
+    public void onMouseClick(MouseEvent mouseEvent) {
+
+    }
 }
 
 
@@ -22,7 +28,7 @@ public class Controller {
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="300.0" prefWidth="300.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="300.0" prefWidth="300.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordsearch.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
