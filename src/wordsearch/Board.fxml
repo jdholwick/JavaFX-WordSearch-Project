@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordsearch.Controller">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="16.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="16.0" />
@@ -25,6 +25,7 @@
       <RowConstraints />
       <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="131.0" minHeight="9.0" prefHeight="17.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="131.0" minHeight="9.0" prefHeight="17.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="161.0" minHeight="7.0" prefHeight="15.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
@@ -40,9 +41,9 @@
       <Label text="T" GridPane.rowIndex="3" />
       <Label text="C" GridPane.rowIndex="2" />
       <Label text="G" GridPane.rowIndex="1" />
-      <Label fx:id="lbl_1_1" text="A" />
+      <Label fx:id="lbl_1_1" onMouseClicked="#onClick" text="Q" />
       <Label text="A" GridPane.rowIndex="14" />
-      <Label text="K" GridPane.rowIndex="15" />
+      <Label text="K" GridPane.rowIndex="16" />
       <Label text="T" GridPane.columnIndex="1" />
       <Label text="G" GridPane.rowIndex="4" />
       <Label text="K" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -59,6 +60,7 @@
       <Label text="K" GridPane.columnIndex="1" GridPane.rowIndex="12" />
       <Label text="E" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       <Label text="W" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-      <Label text="V" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Label text="V" GridPane.columnIndex="1" GridPane.rowIndex="16" />
+      <Button fx:id="btnButton1" mnemonicParsing="false" onAction="#onClick" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="15" />
    </children>
 </GridPane>

@@ -1,10 +1,18 @@
 package wordsearch;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
-import java.awt.event.MouseEvent;
+import javax.swing.*;
 
 public class Controller {
+
+    @FXML
+    private Label lbl_1_1;
+    private Button btnButton1;
 
     public void clickStartButton(ActionEvent event) {
         System.out.println("Word Search will display in GUI later...");
@@ -15,7 +23,17 @@ public class Controller {
         System.exit(0);
     }
 
-    public void onMouseClick(MouseEvent mouseEvent) {
+    public void changeLabel(String newLabel) {
+        lbl_1_1.setText(newLabel);
+    }
+
+    public void onClick(MouseEvent mouseEvent) { //ActionEvent event) {
+        //Button button1 = (Button) mouseEvent.getSource();
+
+        String labelLetter = lbl_1_1.getText();
+
+        changeLabel("B");
+        System.out.println("hi");
 
     }
 }
