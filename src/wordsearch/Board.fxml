@@ -25,42 +25,40 @@
       <RowConstraints />
       <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="17.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="131.0" minHeight="9.0" prefHeight="17.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="131.0" minHeight="9.0" prefHeight="17.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="161.0" minHeight="7.0" prefHeight="15.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label text="W" GridPane.rowIndex="13" />
-      <Label text="V" GridPane.rowIndex="12" />
-      <Label text="M" GridPane.rowIndex="11" />
-      <Label text="W" GridPane.rowIndex="10" />
-      <Label text="F" GridPane.rowIndex="9" />
-      <Label text="W" GridPane.rowIndex="8" />
-      <Label text="E" GridPane.rowIndex="7" />
-      <Label text="D" GridPane.rowIndex="6" />
-      <Label text="M" GridPane.rowIndex="5" />
-      <Label text="T" GridPane.rowIndex="3" />
-      <Label text="C" GridPane.rowIndex="2" />
-      <Label text="G" GridPane.rowIndex="1" />
+      <Label onMouseClicked="#onClick" text="W" GridPane.rowIndex="13" />
+      <Label onMouseClicked="#onClick" text="V" GridPane.rowIndex="12" />
+      <Label onMouseClicked="#onClick" text="M" GridPane.rowIndex="11" />
+      <Label onMouseClicked="#onClick" text="W" GridPane.rowIndex="10" />
+      <Label onMouseClicked="#onClick" text="F" GridPane.rowIndex="9" />
+      <Label onMouseClicked="#onClick" text="W" GridPane.rowIndex="8" />
+      <Label onMouseClicked="#onClick" text="E" GridPane.rowIndex="7" />
+      <Label onMouseClicked="#onClick" text="D" GridPane.rowIndex="6" />
+      <Label onMouseClicked="#onClick" text="M" GridPane.rowIndex="5" />
+      <Label onMouseClicked="#onClick" text="T" GridPane.rowIndex="3" />
+      <Label onMouseClicked="#onClick" text="C" GridPane.rowIndex="2" />
+      <Label onMouseClicked="#onClick" text="G" GridPane.rowIndex="1" />
       <Label fx:id="lbl_1_1" onMouseClicked="#onClick" text="Q" />
-      <Label text="A" GridPane.rowIndex="14" />
-      <Label text="K" GridPane.rowIndex="16" />
-      <Label text="T" GridPane.columnIndex="1" />
-      <Label text="G" GridPane.rowIndex="4" />
-      <Label text="K" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Label text="S" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label text="G" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label text="R" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label text="T" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Label text="H" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label text="M" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <Label text="D" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <Label text="Q" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Label text="T" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <Label text="Y" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <Label text="K" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <Label text="E" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-      <Label text="W" GridPane.columnIndex="1" GridPane.rowIndex="14" />
-      <Label text="V" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-      <Button fx:id="btnButton1" mnemonicParsing="false" onAction="#onClick" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+      <Label onMouseClicked="#onClick" text="A" GridPane.rowIndex="14" />
+      <Label onMouseClicked="#onClick" text="K" GridPane.rowIndex="15" />
+      <Label onMouseClicked="#onClick" text="T" GridPane.columnIndex="1" />
+      <Label onMouseClicked="#onClick" text="G" GridPane.rowIndex="4" />
+      <Label onMouseClicked="#onClick" text="K" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label onMouseClicked="#onClick" text="S" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label onMouseClicked="#onClick" text="G" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Label onMouseClicked="#onClick" text="R" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label onMouseClicked="#onClick" text="T" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label onMouseClicked="#onClick" text="H" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label onMouseClicked="#onClick" text="M" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label onMouseClicked="#onClick" text="D" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label onMouseClicked="#onClick" text="Q" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label onMouseClicked="#onClick" text="T" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <Label onMouseClicked="#onClick" text="Y" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+      <Label onMouseClicked="#onClick" text="K" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+      <Label onMouseClicked="#onClick" text="E" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+      <Label onMouseClicked="#onClick" text="W" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+      <Label onMouseClicked="#onClick" text="V" GridPane.columnIndex="1" GridPane.rowIndex="15" />
    </children>
 </GridPane>
