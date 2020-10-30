@@ -45,8 +45,6 @@ public class Controller {
     }
 
     public void onClick(MouseEvent mouseEvent) {
-        String labelLetter = lbl_1_1.getText();
-
         changeLabel("LOOKING");
         System.out.println("Presently just changes a column of letters to a new word when a letter label is clicked.");
 
