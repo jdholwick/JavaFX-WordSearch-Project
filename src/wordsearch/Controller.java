@@ -2,11 +2,8 @@ package wordsearch;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-
-import javax.swing.*;
 
 public class Controller {
 
