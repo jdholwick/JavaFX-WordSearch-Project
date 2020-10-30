@@ -35,20 +35,19 @@ public class Controller {
     }
 
     public void changeLabel(String newLabel) {
-        //lbl_1_1.setText(newLabel);
-        lbl_1_1.setText("l");
-        lbl_2_1.setText("o");
-        lbl_3_1.setText("o");
-        lbl_4_1.setText("k");
-        lbl_5_1.setText("i");
-        lbl_6_1.setText("n");
-        lbl_7_1.setText("g");
+        lbl_1_1.setText(String.valueOf(newLabel.charAt(0)));
+        lbl_2_1.setText(String.valueOf(newLabel.charAt(1)));
+        lbl_3_1.setText(String.valueOf(newLabel.charAt(2)));
+        lbl_4_1.setText(String.valueOf(newLabel.charAt(3)));
+        lbl_5_1.setText(String.valueOf(newLabel.charAt(4)));
+        lbl_6_1.setText(String.valueOf(newLabel.charAt(5)));
+        lbl_7_1.setText(String.valueOf(newLabel.charAt(6)));
     }
 
     public void onClick(MouseEvent mouseEvent) {
         String labelLetter = lbl_1_1.getText();
 
-        changeLabel("H");
+        changeLabel("LOOKING");
         System.out.println("hi");
 
     }
