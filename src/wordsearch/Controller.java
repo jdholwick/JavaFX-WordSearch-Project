@@ -34,8 +34,8 @@ public class Controller {
         System.exit(0);
     }
 
-    public void changeLabel(String newLabel) {
-        lbl_1_1.setText(String.valueOf(newLabel.charAt(0)));
+    public void changeLabel(Label curLblName, String newLabel) {
+        curLblName.setText(String.valueOf(newLabel.charAt(0)));
         lbl_2_1.setText(String.valueOf(newLabel.charAt(1)));
         lbl_3_1.setText(String.valueOf(newLabel.charAt(2)));
         lbl_4_1.setText(String.valueOf(newLabel.charAt(3)));
@@ -45,7 +45,7 @@ public class Controller {
     }
 
     public void onClick(MouseEvent mouseEvent) {
-        changeLabel("LOOKING");
+        changeLabel(lbl_1_1, "LOOKING");
         System.out.println("Presently just changes a column of letters to a new word when a letter label is clicked.");
 
     }
