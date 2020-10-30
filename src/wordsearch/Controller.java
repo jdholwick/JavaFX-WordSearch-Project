@@ -12,7 +12,18 @@ public class Controller {
 
     @FXML
     private Label lbl_1_1;
-    private Button btnButton1;
+    @FXML
+    private Label lbl_2_1;
+    @FXML
+    private Label lbl_3_1;
+    @FXML
+    private Label lbl_4_1;
+    @FXML
+    private Label lbl_5_1;
+    @FXML
+    private Label lbl_6_1;
+    @FXML
+    private Label lbl_7_1;
 
     public void clickStartButton(ActionEvent event) {
         System.out.println("Word Search will display in GUI later...");
@@ -24,15 +35,20 @@ public class Controller {
     }
 
     public void changeLabel(String newLabel) {
-        lbl_1_1.setText(newLabel);
+        //lbl_1_1.setText(newLabel);
+        lbl_1_1.setText("l");
+        lbl_2_1.setText("o");
+        lbl_3_1.setText("o");
+        lbl_4_1.setText("k");
+        lbl_5_1.setText("i");
+        lbl_6_1.setText("n");
+        lbl_7_1.setText("g");
     }
 
-    public void onClick(MouseEvent mouseEvent) { //ActionEvent event) {
-        //Button button1 = (Button) mouseEvent.getSource();
-
+    public void onClick(MouseEvent mouseEvent) {
         String labelLetter = lbl_1_1.getText();
 
-        changeLabel("B");
+        changeLabel("H");
         System.out.println("hi");
 
     }
