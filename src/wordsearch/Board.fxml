@@ -60,5 +60,6 @@
       <Label onMouseClicked="#onClick" text="E" GridPane.columnIndex="1" GridPane.rowIndex="13" />
       <Label onMouseClicked="#onClick" text="W" GridPane.columnIndex="1" GridPane.rowIndex="14" />
       <Label onMouseClicked="#onClick" text="V" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Label fx:id="lbl_15_3" GridPane.columnIndex="2" GridPane.rowIndex="15" />
    </children>
 </GridPane>
