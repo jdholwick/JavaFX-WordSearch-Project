@@ -34,6 +34,8 @@ public class Controller {
         lbl_6_1.setText(String.valueOf(newLabel.charAt(5)));
         lbl_7_1.setText(String.valueOf(newLabel.charAt(6)));
         lbl_15_3.setText("A");
+        lbl_1_3.setText("A");
+        lbl_4_3.setText("A");
     }
 
     public void onClick(MouseEvent mouseEvent) {
