@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Label;
-//import java.awt.Label;
+
 
 public class Main extends Application {
 
@@ -15,25 +15,28 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Label label1 = new Label("Z");
         Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
+        Scene newMenu = new Scene(root);
 
         Parent board = FXMLLoader.load(getClass().getResource("Board.fxml"));
         Scene newBoard = new Scene(board);
 
         primaryStage.setTitle("Word Search");
-        primaryStage.setScene(newBoard);
+        primaryStage.setScene(newMenu);
         //primaryStage.setScene(new Scene(root, 600, 275));
         primaryStage.show();
 
-        /*Stage stage2 = new Stage();
 
-        stage2.setTitle("Second Window");
+        Stage boardStage = new Stage();
 
-        stage2.setHeight(500);
-        stage2.setWidth(500);
+        boardStage.setTitle("Second Window");
+        boardStage.setScene(newBoard);
 
-        stage2.setX(20);
-        stage2.setY(20);
-        stage2.show();*/
+        //boardStage.setHeight(500);
+        //boardStage.setWidth(500);
+
+        boardStage.setX(20);
+        boardStage.setY(20);
+        boardStage.show();
     }
 
 
