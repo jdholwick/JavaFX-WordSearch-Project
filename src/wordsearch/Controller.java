@@ -15,6 +15,8 @@ public class Controller {
     private Label lbl_1_3, lbl_2_3, lbl_3_3, lbl_4_3, lbl_5_3, lbl_6_3, lbl_7_3, lbl_8_3, lbl_9_3, lbl_10_3, lbl_11_3, lbl_12_3, lbl_13_3, lbl_14_3, lbl_15_3;
     @FXML
     private Label lbl_1_4, lbl_2_4, lbl_3_4, lbl_4_4, lbl_5_4, lbl_6_4, lbl_7_4, lbl_8_4, lbl_9_4, lbl_10_4, lbl_11_4, lbl_12_4, lbl_13_4, lbl_14_4, lbl_15_4;
+    @FXML
+    private Label lbl_1_5, lbl_2_5, lbl_3_5, lbl_4_5, lbl_5_5, lbl_6_5, lbl_7_5, lbl_8_5, lbl_9_5, lbl_10_5, lbl_11_5, lbl_12_5, lbl_13_5, lbl_14_5, lbl_15_5;
 
     public void clickStartButton(ActionEvent event) {
         System.out.println("Word Search will display in GUI later...");
@@ -33,9 +35,10 @@ public class Controller {
         lbl_5_1.setText(String.valueOf(newLabel.charAt(4)));
         lbl_6_1.setText(String.valueOf(newLabel.charAt(5)));
         lbl_7_1.setText(String.valueOf(newLabel.charAt(6)));
-        lbl_15_3.setText("A");
-        lbl_1_3.setText("A");
-        lbl_4_3.setText("A");
+        lbl_15_3.setText("Y");
+        lbl_1_3.setText("Y");
+        lbl_4_3.setText("Y");
+        lbl_6_4.setText("Y");
     }
 
     public void onClick(MouseEvent mouseEvent) {
