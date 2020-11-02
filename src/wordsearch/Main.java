@@ -20,7 +20,7 @@ public class Main extends Application {
         Parent board = FXMLLoader.load(getClass().getResource("Board.fxml"));
         Scene newBoard = new Scene(board);
 
-        primaryStage.setTitle("Word Search");
+        primaryStage.setTitle("Word Search Menu");
         primaryStage.setScene(newMenu);
         //primaryStage.setScene(new Scene(root, 600, 275));
         primaryStage.show();
@@ -28,7 +28,7 @@ public class Main extends Application {
 
         Stage boardStage = new Stage();
 
-        boardStage.setTitle("Second Window");
+        boardStage.setTitle("Letter Board");
         boardStage.setScene(newBoard);
 
         //boardStage.setHeight(500);
