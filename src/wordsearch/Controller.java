@@ -1,9 +1,13 @@
 package wordsearch;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -43,10 +47,25 @@ public class Controller {
     private Label lbl_13_0, lbl_13_1, lbl_13_2, lbl_13_3, lbl_13_4, lbl_13_5, lbl_13_6, lbl_13_7, lbl_13_8, lbl_13_9, lbl_13_10, lbl_13_11, lbl_13_12, lbl_13_13, lbl_13_14;
     @FXML
     private Label lbl_14_0, lbl_14_1, lbl_14_2, lbl_14_3, lbl_14_4, lbl_14_5, lbl_14_6, lbl_14_7, lbl_14_8, lbl_14_9, lbl_14_10, lbl_14_11, lbl_14_12, lbl_14_13, lbl_14_14;
-    
+
+    public Node getNodeByCoords (GridPane gridPane, int row, int column) { // This method is the start of an attempt to get each label off the gridpane by column and row.
+        Node curNode = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+
+        for (Node node : childrens) {
+            if(gridPane.getColumnIndex(node) == column && gridPane.getRowIndex(node) == row) {
+                curNode = node;
+                break;
+            }
+        }
+
+        return curNode;
+    }
+
     public void readWordFile(String sWords) {
 
     }
+
     public void clickStartButton(ActionEvent event) {
         System.out.println("Word Search will display in GUI later...");
 
