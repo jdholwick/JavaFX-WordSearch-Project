@@ -18,6 +18,8 @@ import java.util.Scanner;
 public class Controller {
 
     @FXML
+    private GridPane GridPane1 = new GridPane();
+    @FXML
     private Label lbl_0_0, lbl_0_1, lbl_0_2, lbl_0_3, lbl_0_4, lbl_0_5, lbl_0_6, lbl_0_7, lbl_0_8, lbl_0_9, lbl_0_10, lbl_0_11, lbl_0_12, lbl_0_13, lbl_0_14;
     @FXML
     private Label lbl_1_0, lbl_1_1, lbl_1_2, lbl_1_3, lbl_1_4, lbl_1_5, lbl_1_6, lbl_1_7, lbl_1_8, lbl_1_9, lbl_1_10, lbl_1_11, lbl_1_12, lbl_1_13, lbl_1_14;
@@ -50,9 +52,9 @@ public class Controller {
 
     public Node getNodeByCoords (GridPane gridPane, int row, int column) { // This method is the start of an attempt to get each label off the gridpane by column and row.
         Node curNode = null;
-        ObservableList<Node> childrens = gridPane.getChildren();
+        ObservableList<Node> children = gridPane.getChildren();
 
-        for (Node node : childrens) {
+        for (Node node : children) {
             if(gridPane.getColumnIndex(node) == column && gridPane.getRowIndex(node) == row) {
                 curNode = node;
                 break;
@@ -93,6 +95,10 @@ public class Controller {
         {
             System.out.println("problem importing word file...");
         }
+
+        Node curNode = getNodeByCoords(GridPane1, 5, 5);
+
+        System.out.println(curNode);
 
         //readWordFile("words.txt");
         //String sWords = readString()
