@@ -88,15 +88,13 @@ public class Controller {
                 System.out.println("   " + listWords.get(i));
             }
 
-
-
         }
         catch (FileNotFoundException ex)
         {
             System.out.println("problem importing word file...");
         }
 
-        Node curNode = getNodeByCoords(GridPane1, 5, 5);
+        Node curNode = getNodeByCoords(GridPane1, 2, 2);
 
         System.out.println(curNode);
 
@@ -111,12 +109,12 @@ public class Controller {
 
     public void changeLabel(Label curLblName, String newLabel) {
         curLblName.setText(String.valueOf(newLabel.charAt(0)));
-        lbl_0_1.setText(String.valueOf(newLabel.charAt(1)));
-        lbl_1_2.setText(String.valueOf(newLabel.charAt(2)));
-        lbl_2_3.setText(String.valueOf(newLabel.charAt(3)));
-        lbl_3_4.setText(String.valueOf(newLabel.charAt(4)));
-        lbl_4_5.setText(String.valueOf(newLabel.charAt(5)));
-        lbl_5_6.setText(String.valueOf(newLabel.charAt(6)));
+        lbl_1_1.setText(String.valueOf(newLabel.charAt(1)));
+        lbl_2_2.setText(String.valueOf(newLabel.charAt(2)));
+        lbl_3_3.setText(String.valueOf(newLabel.charAt(3)));
+        lbl_4_4.setText(String.valueOf(newLabel.charAt(4)));
+        lbl_5_5.setText(String.valueOf(newLabel.charAt(5)));
+        lbl_6_6.setText(String.valueOf(newLabel.charAt(6)));
         lbl_0_7.setText("F");
         lbl_1_8.setText("O");
         lbl_2_9.setText("R");
