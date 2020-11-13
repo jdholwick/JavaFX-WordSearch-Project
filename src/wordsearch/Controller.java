@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class Controller {
 
     @FXML
-    private GridPane GridPane1 = new GridPane();
+    private GridPane GridPane1;
     @FXML
     private Label lbl_0_0, lbl_0_1, lbl_0_2, lbl_0_3, lbl_0_4, lbl_0_5, lbl_0_6, lbl_0_7, lbl_0_8, lbl_0_9, lbl_0_10, lbl_0_11, lbl_0_12, lbl_0_13, lbl_0_14;
     @FXML
@@ -52,9 +52,10 @@ public class Controller {
 
     public Node getNodeByCoords (GridPane gridPane, int row, int column) { // This method is the start of an attempt to get each label off the gridpane by column and row.
         Node curNode = null;
-        ObservableList<Node> children = gridPane.getChildren();
+        System.out.println(gridPane);
+        ObservableList<Node> children = gridPane.getChildren(); // creates ObservableList of Nodes from the gridPane rows and columns
 
-        for (Node node : children) {
+        for (Node node : children) { // should iterate over each element in the ObservableList children until the one from parameters row and column is found
             if(gridPane.getColumnIndex(node) == column && gridPane.getRowIndex(node) == row) {
                 curNode = node;
                 break;
@@ -64,12 +65,7 @@ public class Controller {
         return curNode;
     }
 
-    public void readWordFile(String sWords) {
-
-    }
-
-    public void clickStartButton(ActionEvent event) {
-        System.out.println("Word Search will display in GUI later...");
+    public void readWordFile() {
 
         try
         {
@@ -94,12 +90,17 @@ public class Controller {
             System.out.println("problem importing word file...");
         }
 
+    }
+
+    public void clickStartButton(ActionEvent event) {
+        System.out.println("Word Search will display in GUI later...");
+
+        readWordFile();
+
         Node curNode = getNodeByCoords(GridPane1, 2, 2);
 
         System.out.println(curNode);
 
-        //readWordFile("words.txt");
-        //String sWords = readString()
     }
 
     public void clickExitButton(ActionEvent event) {
@@ -122,7 +123,7 @@ public class Controller {
 
     public void onClick(MouseEvent mouseEvent) {
         changeLabel(lbl_0_0, "LOOKING");
-        System.out.println("Presently just changes a column of letters to a new word when a letter label is clicked.");
+        System.out.println("Presently just changes a diagonal of letters to a new word when a letter label is clicked.");
 
     }
 }
