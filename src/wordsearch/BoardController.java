@@ -59,7 +59,7 @@ public class BoardController {
         return curNode;
     }
 
-    public void changeLabel(/*Label curLblName, */String newLabel) {
+    public void changeLabel() {
         Random r = new Random();
         Node curNode = null;
 
@@ -74,11 +74,10 @@ public class BoardController {
             }
         }
 
-
-        System.out.println("This is the label: " + (Label)curNode);
     }
 
     public void onClick(MouseEvent mouseEvent) {
+        changeLabel();
         System.out.println("Now changes board to a board of random letters.");
 
     }
