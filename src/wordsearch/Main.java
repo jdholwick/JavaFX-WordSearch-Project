@@ -5,15 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.layout.GridPane;
-import javafx.scene.control.Label;
 
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Label label1 = new Label("Z");
+
         Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
         Scene newMenu = new Scene(root);
 
@@ -22,7 +20,6 @@ public class Main extends Application {
 
         primaryStage.setTitle("Word Search Menu");
         primaryStage.setScene(newMenu);
-        //primaryStage.setScene(new Scene(root, 600, 275));
         primaryStage.show();
 
 
@@ -30,9 +27,6 @@ public class Main extends Application {
 
         boardStage.setTitle("Letter Board");
         boardStage.setScene(newBoard);
-
-        //boardStage.setHeight(500);
-        //boardStage.setWidth(500);
 
         boardStage.setX(20);
         boardStage.setY(20);
