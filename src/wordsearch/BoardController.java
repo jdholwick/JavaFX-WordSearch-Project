@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
+import java.util.Random;
+
 
 public class BoardController {
 
@@ -45,7 +47,6 @@ public class BoardController {
 
     public Node getNodeByCoords (GridPane gridPane, int row, int column) { // This method is the start of an attempt to get each label off the gridpane by column and row.
         Node curNode = null;
-        System.out.println(gridPane);
         ObservableList<Node> children = gridPane.getChildren(); // creates ObservableList of Nodes from the gridPane rows and columns
 
         for (Node node : children) { // should iterate over each element in the ObservableList children until the one from parameters row and column is found
@@ -59,26 +60,26 @@ public class BoardController {
     }
 
     public void changeLabel(/*Label curLblName, */String newLabel) {
-        //curLblName.setText(String.valueOf(newLabel.charAt(0)));
-        lbl_0_0.setText(String.valueOf(newLabel.charAt(0)));
-        lbl_1_1.setText(String.valueOf(newLabel.charAt(1)));
-        lbl_2_2.setText(String.valueOf(newLabel.charAt(2)));
-        lbl_3_3.setText(String.valueOf(newLabel.charAt(3)));
-        lbl_4_4.setText(String.valueOf(newLabel.charAt(4)));
-        lbl_5_5.setText(String.valueOf(newLabel.charAt(5)));
-        lbl_6_6.setText(String.valueOf(newLabel.charAt(6)));
-        lbl_0_7.setText("F");
-        lbl_1_8.setText("O");
-        lbl_2_9.setText("R");
+        Random r = new Random();
+        Node curNode = null;
 
-        Node curNode = getNodeByCoords(gpBoard, 3, 3);
-        //System.out.println(gpBoard);
-        System.out.println(curNode);
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                curNode = getNodeByCoords(gpBoard, i, j);
+                //System.out.println(gpBoard);
+                String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+                ((Label) curNode).setText(Character.toString(alphabet.charAt(r.nextInt(alphabet.length()))));
+
+            }
+        }
+
+
+        System.out.println("This is the label: " + (Label)curNode);
     }
 
     public void onClick(MouseEvent mouseEvent) {
-        changeLabel(/*lbl_0_0, */"LOOKING");
-        System.out.println("Presently just changes a diagonal of letters to a new word when a letter label is clicked.");
+        System.out.println("Now changes board to a board of random letters.");
 
     }
 }
