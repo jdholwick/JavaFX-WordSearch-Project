@@ -116,7 +116,7 @@ public class BoardController {
         System.out.printf("You release mouse on a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
     }
 
-    public void onClick(MouseEvent mouseEvent) {
+    public void onClickStartBtn(MouseEvent mouseEvent) {
         putRandLettersOnBoard();
 
         // This is temporary just so we can see what our placedWordMap looks like.
