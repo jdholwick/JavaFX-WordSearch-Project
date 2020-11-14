@@ -30,7 +30,6 @@ public class BoardController {
             }
         }
 
-        System.out.println(curNode.getId());
         return curNode;
     }
 
