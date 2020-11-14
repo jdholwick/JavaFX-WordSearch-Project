@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -99,17 +100,20 @@ public class BoardController {
     }
 
     public void onLabelMousePress(MouseEvent mouseEvent) {
-        Node source = (Node)mouseEvent.getSource() ;
+        Node source = (Node)mouseEvent.getSource();
         Integer colCoord = GridPane.getColumnIndex(source);
         Integer rowCoord = GridPane.getRowIndex(source);
-        System.out.printf("You clicked a letter located at column and row, [%d, %d]%n", colCoord.intValue(), rowCoord.intValue());
+        clickedLetters[0][0] = colCoord;
+        clickedLetters[0][1] = rowCoord;
+        System.out.println("Stored in clickedLetters[0][0] and clickedLetters[0][1]: [" + clickedLetters[0][0] + ", " + clickedLetters[0][1] + "]");
+        System.out.printf("You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
     }
 
     public void onLabelMouseRelease(MouseEvent mouseEvent) {
-        Node source = (Node)mouseEvent.getSource() ;
+        Node source = (Node)mouseEvent.getSource();
         Integer colCoord = GridPane.getColumnIndex(source);
         Integer rowCoord = GridPane.getRowIndex(source);
-        System.out.printf("You release mouse on a letter located at column and row, [%d, %d]%n", colCoord.intValue(), rowCoord.intValue());
+        System.out.printf("You release mouse on a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
     }
 
     public void onClick(MouseEvent mouseEvent) {
