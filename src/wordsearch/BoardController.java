@@ -16,6 +16,8 @@ public class BoardController {
     private GridPane gpBoard;
 
     private int[][] placedWordMap = new int[15][15]; // Will hold coordinates of any placed words so they don't get overwritten on the board.
+    private int[][][] hiddenWordCoords = new int[2][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
+    private int[][] clickedLetters = new int[2][2]; // Will hold coordinates of first and last letter clicked
 
     public Node getNodeByCoords(GridPane gridPane, int column, int row) { // This method is the start of an attempt to get each label off the gridpane by column and row.
         Node curNode = null;
@@ -79,9 +81,6 @@ public class BoardController {
             bWordCross = false; // Set to false again here to enter loop that will check for word crossing.
 
             for(int i = 0; i <= randWord.length(); i++) {
-                System.out.println(randRowCoord + i);
-                System.out.println(randColCoord);
-
                 if (placedWordMap[randColCoord][randRowCoord + i] == 1) {
                     System.out.println("Overlap found!");
                     randRowCoord = 100; // Forces new rands to be found when loop restarts.
@@ -100,11 +99,18 @@ public class BoardController {
 
     }
 
-    public void onLabelClick(MouseEvent mouseEvent) {
+    public void onLabelMousePress(MouseEvent mouseEvent) {
         Node source = (Node)mouseEvent.getSource() ;
         Integer colCoord = GridPane.getColumnIndex(source);
         Integer rowCoord = GridPane.getRowIndex(source);
         System.out.printf("You clicked a letter located at column and row, [%d, %d]%n", colCoord.intValue(), rowCoord.intValue());
+    }
+
+    public void onLabelMouseRelease(MouseEvent mouseEvent) {
+        Node source = (Node)mouseEvent.getSource() ;
+        Integer colCoord = GridPane.getColumnIndex(source);
+        Integer rowCoord = GridPane.getRowIndex(source);
+        System.out.printf("You release mouse on a letter located at column and row, [%d, %d]%n", colCoord.intValue(), rowCoord.intValue());
     }
 
     public void onClick(MouseEvent mouseEvent) {
