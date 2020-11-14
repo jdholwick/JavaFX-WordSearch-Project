@@ -21,13 +21,14 @@ public class BoardController {
         Node curNode = null;
         ObservableList<Node> children = gridPane.getChildren(); // creates ObservableList of Nodes from the gridPane rows and columns
 
-        for (Node node : children) { // should iterate over each element in the ObservableList children until the one from parameters row and column is found
+        for (Node node : children) { // should iterate over each element in the ObservableList, children, until the one from parameters row and column is found
             if (gridPane.getColumnIndex(node) == column && gridPane.getRowIndex(node) == row) {
                 curNode = node;
                 break;
             }
         }
 
+        System.out.println(curNode.getId());
         return curNode;
     }
 
@@ -97,6 +98,13 @@ public class BoardController {
             placedWordMap[randColCoord][randRowCoord + i] = 1; // A 1 on the map indicates a letter is there.
         }
 
+    }
+
+    public void onLabelClick(MouseEvent mouseEvent) {
+        Node source = (Node)mouseEvent.getSource() ;
+        Integer colCoord = GridPane.getColumnIndex(source);
+        Integer rowCoord = GridPane.getRowIndex(source);
+        System.out.printf("You clicked a letter located at column and row, [%d, %d]%n", colCoord.intValue(), rowCoord.intValue());
     }
 
     public void onClick(MouseEvent mouseEvent) {
