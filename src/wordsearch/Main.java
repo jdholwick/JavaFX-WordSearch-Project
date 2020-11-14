@@ -15,22 +15,24 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Interface.fxml"));
         Scene newMenu = new Scene(root);
 
+/*
         Parent board = FXMLLoader.load(getClass().getResource("Board.fxml"));
         Scene newBoard = new Scene(board);
+*/
 
         primaryStage.setTitle("Word Search Menu");
         primaryStage.setScene(newMenu);
         primaryStage.show();
 
 
-        Stage boardStage = new Stage();
+/*        Stage boardStage = new Stage();
 
         boardStage.setTitle("Letter Board");
         boardStage.setScene(newBoard);
 
         boardStage.setX(20);
         boardStage.setY(20);
-        boardStage.show();
+        boardStage.show();*/
     }
 
 

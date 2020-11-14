@@ -31,7 +31,7 @@ public class BoardController {
         return curNode;
     }
 
-    public void createBoard() {
+    public void putRandLettersOnBoard() {
         Random rand = new Random();
         Node curNode = null;
 
@@ -55,6 +55,7 @@ public class BoardController {
         // Places words randomly on board
         placeRandomWord(word1);
         placeRandomWord(word2);
+
 
     }
 
@@ -99,9 +100,9 @@ public class BoardController {
     }
 
     public void onClick(MouseEvent mouseEvent) {
-        createBoard();
+        putRandLettersOnBoard();
 
-        // This is temporary just so we can see what our placedWordMap looks like
+        // This is temporary just so we can see what our placedWordMap looks like.
         for (int row = 0; row < 15; row++) {
             for (int col = 0; col < 15; col++) {
                 System.out.print(placedWordMap[col][row] + " ");
@@ -110,6 +111,9 @@ public class BoardController {
         }
 
         System.out.println("Now changes board to a board of random letters.");
+
+
+        placedWordMap = new int[15][15]; // Resets array to 0s.
 
     }
 }

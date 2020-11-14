@@ -20,6 +20,7 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="16.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="16.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="16.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="70.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
@@ -36,7 +37,8 @@
       <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <Label fx:id="lbl_0_0" onMouseClicked="#onClick" text="Z" GridPane.columnIndex="0" GridPane.rowIndex="0" />
@@ -278,5 +280,6 @@
       <Label fx:id="lbl_14_12" onMouseClicked="#onClick" text="Z" GridPane.columnIndex="14" GridPane.rowIndex="12" />
       <Label fx:id="lbl_14_13" onMouseClicked="#onClick" text="Z" GridPane.columnIndex="14" GridPane.rowIndex="13" />
       <Label fx:id="lbl_14_14" onMouseClicked="#onClick" text="Z" GridPane.columnIndex="14" GridPane.rowIndex="14" />
+      <Button fx:id="btnInit" mnemonicParsing="false" onMouseClicked="#onClick" text="Start" GridPane.columnIndex="15" GridPane.rowIndex="15" />
    </children>
 </GridPane>
