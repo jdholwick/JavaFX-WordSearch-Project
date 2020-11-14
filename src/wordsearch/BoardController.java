@@ -19,6 +19,7 @@ public class BoardController {
     private int[][] placedWordMap = new int[15][15]; // Will hold coordinates of any placed words so they don't get overwritten on the board.
     private int[][][] hiddenWordCoords = new int[2][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
     private int[][] clickedLetters = new int[2][2]; // Will hold coordinates of first and last letter clicked
+    private boolean bFirstClick = true; // Used to determine which letter click we are on. True to begin with because first click is always on first letter of "word."
 
     public Node getNodeByCoords(GridPane gridPane, int column, int row) { // This method is the start of an attempt to get each label off the gridpane by column and row.
         Node curNode = null;
@@ -103,18 +104,31 @@ public class BoardController {
         Node source = (Node)mouseEvent.getSource();
         Integer colCoord = GridPane.getColumnIndex(source);
         Integer rowCoord = GridPane.getRowIndex(source);
-        clickedLetters[0][0] = colCoord;
-        clickedLetters[0][1] = rowCoord;
-        System.out.println("Stored in clickedLetters[0][0] and clickedLetters[0][1]: [" + clickedLetters[0][0] + ", " + clickedLetters[0][1] + "]");
-        System.out.printf("You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
+
+        if (bFirstClick == true) {
+            clickedLetters[0][0] = colCoord;
+            clickedLetters[0][1] = rowCoord;
+            // temp line for testing:
+            System.out.println("First click stored in clickedLetters[0][0] and clickedLetters[0][1]: [" + clickedLetters[0][0] + ", " + clickedLetters[0][1] + "]");
+            System.out.printf("First Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
+            bFirstClick = false; // So next recorded click will be second letter.
+        } else if (bFirstClick == false) {
+            clickedLetters[1][0] = colCoord;
+            clickedLetters[1][1] = rowCoord;
+            System.out.printf("Second Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
+            bFirstClick = true; // So next recorded click will start cycle over and record first letter.
+        }
+
+
+
     }
 
-    public void onLabelMouseRelease(MouseEvent mouseEvent) {
+    /*public void onLabelMouseRelease(MouseEvent mouseEvent) { // Problem here is it keeps giving me coordinate of originally clicked label.
         Node source = (Node)mouseEvent.getSource();
         Integer colCoord = GridPane.getColumnIndex(source);
         Integer rowCoord = GridPane.getRowIndex(source);
         System.out.printf("You release mouse on a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
-    }
+    }*/
 
     public void onClickStartBtn(MouseEvent mouseEvent) {
         putRandLettersOnBoard();
