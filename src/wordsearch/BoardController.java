@@ -81,16 +81,15 @@ public class BoardController {
             }
         }
 
-
         // Places words randomly on board
         for (int i = 0; i < listWords.size(); i++) { // for testing
-                placeRandomWord(listWords.get(i));
+                placeRandomWord(listWords.get(i), "vertical");
         }
 
 
     }
 
-    public void placeRandomWord(String randWord) {
+    public void placeRandomWord(String randWord, String sWordDirection) {
         Node curNode = null;
         Random rand = new Random();
         int randRowCoord = rand.nextInt(15); // random int between 0 and 14
@@ -108,7 +107,7 @@ public class BoardController {
 
             bWordCross = false; // Set to false again here to enter loop that will check for word crossing.
 
-            for(int i = 0; i <= randWord.length(); i++) {
+            for(int i = 0; i <= randWord.length(); i++) { // For VERTICAL words.
                 if (placedWordMap[randColCoord][randRowCoord + i] == 1) {
                     //System.out.println("Overlap found!"); // for testing
                     randRowCoord = 100; // Forces new rands to be found when loop restarts.
@@ -126,12 +125,12 @@ public class BoardController {
             placedWordMap[randColCoord][randRowCoord + i] = 1; // A 1 on the map indicates a letter is there.
         }
 
-        hiddenWordCoords[iHiddenWordIter][0][0] = randColCoord; // Marks coords for beginning of the word.
-        hiddenWordCoords[iHiddenWordIter][0][1] = randRowCoord; // Marks coords for beginning of the word.
-        hiddenWordCoords[iHiddenWordIter][1][0] = randColCoord; // Marks coords for end of the word.
-        hiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord + randWord.length() - 1; // Marks coords for end of the word. Subtract 1 to account for randRowCoord being the first letter of the word.
+        hiddenWordCoords[iHiddenWordIter][0][0] = randColCoord; // Marks coords for beginning of VERTICAL word.
+        hiddenWordCoords[iHiddenWordIter][0][1] = randRowCoord; // Marks coords for beginning of VERTICAL word.
+        hiddenWordCoords[iHiddenWordIter][1][0] = randColCoord; // Marks coords for end of VERTICAL word.
+        hiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord + randWord.length() - 1; // Marks coords for end of VERTICAL word. Subtract 1 to account for randRowCoord being the first letter of the word.
 
-        iHiddenWordIter++; // When next word is placed this will ensure it takes an different spot in the array.
+        iHiddenWordIter++; // When next word is placed this will ensure it takes a different spot in the array.
 
     }
 
@@ -150,7 +149,7 @@ public class BoardController {
                 clickedLetters[1][1] = rowCoord; // Marks coords for end of the word.
                 bFirstClick = true; // So next recorded click will start cycle over and record first letter.
 
-                for (int i = iHiddenWordIter - 1; i >= 0; i--) { // iHiddenWordIter is subracted by 1 because it is incremented once superfluously at the end of placeRandomWords.
+                for (int i = iHiddenWordIter - 1; i >= 0; i--) { // iHiddenWordIter is subracted by 1 because it is incremented once superfluously at the end of placeRandomWord.
                     if (((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
                             (clickedLetters[0][1] == hiddenWordCoords[i][0][1]) &&
                             (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
