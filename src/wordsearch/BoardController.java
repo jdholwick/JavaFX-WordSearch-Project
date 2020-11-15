@@ -21,12 +21,13 @@ public class BoardController {
     private GridPane gpBoard;
 
     private int[][] placedWordMap = new int[15][15]; // Will hold coordinates of any placed words so they don't get overwritten on the board.
-    private int[][][] hiddenWordCoords = new int[2][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
+    private int[][][] hiddenWordCoords = new int[5][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
     private int[][] clickedLetters = new int[2][2]; // Will hold coordinates of first and last letter clicked
     private boolean bFirstClick = true; // Used to determine which letter click we are on. True to begin with because first click is always on first letter of "word."
     private int iHiddenWordIter = 0; // This will be incremented everytime a new word is added to the puzzle. It is used to index the 3d hiddenWordCoords.
     private boolean bWordFileRead = false; // Used to ensure we only load word dictionary once.
 
+    private List<Integer> listFoundWords = new ArrayList<Integer>();
     private List<String> listWords = new ArrayList<String>();
 
     public void readWordFile() {
@@ -128,7 +129,6 @@ public class BoardController {
             curNode = getNodeByCoords(gpBoard, randColCoord, randRowCoord + i); // Uses randRowCoord + i to move down for each new letter to add.
 
             ((Label)curNode).setText((Character.toString(randWord.charAt(i))));
-            //((Label)curNode).setStyle("-fx-font-weight: bold;"); // for testing
             placedWordMap[randColCoord][randRowCoord + i] = 1; // A 1 on the map indicates a letter is there.
         }
 
@@ -171,11 +171,29 @@ public class BoardController {
                 System.out.println(hiddenWordCoords[i][0][1]);
                 System.out.println(hiddenWordCoords[i][1][0]);
                 System.out.println(hiddenWordCoords[i][1][1]);*/
-                if ((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
+                if (((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
                         (clickedLetters[0][1] == hiddenWordCoords[i][0][1]) &&
                         (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
-                        (clickedLetters[1][1] == hiddenWordCoords[i][1][1])) {
-                    System.out.println("You found a word!");
+                        (clickedLetters[1][1] == hiddenWordCoords[i][1][1])) ||
+                        ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
+                                (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
+                                (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
+                                (clickedLetters[0][1] == hiddenWordCoords[i][1][1]))){
+
+                    // Maybe more convoluted than it needs to be but twe'll keep track of what's been found by converting coordinates to a string and then back to a long integer number and storing in a list so we can search for that number should the same word be clicked.
+                    String sTemp0 = Integer.toString(hiddenWordCoords[i][0][0]);
+                    String sTemp1 = Integer.toString(hiddenWordCoords[i][0][1]);
+                    String sTemp2 = Integer.toString(hiddenWordCoords[i][1][0]);
+                    String sTemp3 = Integer.toString(hiddenWordCoords[i][1][1]);
+                    String sTempFinal = sTemp0 + sTemp1 + sTemp2 + sTemp3;
+
+                    if (listFoundWords.contains(Integer.parseInt(sTempFinal))) {
+                        System.out.println("You already found this word.");
+                    } else {
+                        listFoundWords.add(Integer.parseInt(sTempFinal));
+                        System.out.println("You found a word!");
+                    }
+
 
                     for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
                         Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
@@ -184,11 +202,24 @@ public class BoardController {
                     }
 
                     break;
-                } else if ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
+                /*} else if ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
                         (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
                         (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
                         (clickedLetters[0][1] == hiddenWordCoords[i][1][1])) {
-                    System.out.println("You found a word!");
+
+                    // Maybe more convoluted than it needs to be but twe'll keep track of what's been found by converting coordinates to a string and then back to a long integer number and storing in a list so we can search for that number should the same word be clicked.
+                    String sTemp0 = Integer.toString(hiddenWordCoords[i][0][0]);
+                    String sTemp1 = Integer.toString(hiddenWordCoords[i][0][1]);
+                    String sTemp2 = Integer.toString(hiddenWordCoords[i][1][0]);
+                    String sTemp3 = Integer.toString(hiddenWordCoords[i][1][1]);
+                    String sTempFinal = sTemp0 + sTemp1 + sTemp2 + sTemp3;
+
+                    if (listFoundWords.contains(Integer.parseInt(sTempFinal))) {
+                        System.out.println("You already found this word.");
+                    } else {
+                        listFoundWords.add(Integer.parseInt(sTempFinal));
+                        System.out.println("You found a word!");
+                    }
 
                     for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
                         Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
@@ -196,7 +227,7 @@ public class BoardController {
 
                     }
 
-                    break;
+                    break;*/
                 } else if (i == 0) { // This way we don't print this every time we don't match from the list of words on the board.
                     System.out.println("Not a word... Keep trying.");
                 }
@@ -219,7 +250,7 @@ public class BoardController {
     public void onClickStartBtn(MouseEvent mouseEvent) {
         // The following variables of this class are reset for a new game board:
         placedWordMap = new int[15][15];
-        hiddenWordCoords = new int[2][2][2];
+        hiddenWordCoords = new int[5][2][2];
         clickedLetters = new int[2][2];
         bFirstClick = true;
         iHiddenWordIter = 0;
