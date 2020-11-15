@@ -8,12 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 
 public class MainController {
@@ -21,37 +16,9 @@ public class MainController {
     @FXML
     private GridPane gpInterface;
 
-    public void readWordFile() {
-
-        try
-        {
-            File wordFile = new File("src\\wordsearch\\words.txt");
-            Scanner sc = new Scanner(wordFile);
-
-            List<String> listWords = new ArrayList<String>();
-
-            while (sc.hasNextLine()){
-                listWords.add(sc.nextLine());
-            }
-
-            System.out.println("Words that will be in the wordsearch board:");
-
-            for (int i = 0; i < listWords.size(); i++) {
-                System.out.println("   " + listWords.get(i));
-            }
-
-        }
-        catch (FileNotFoundException ex)
-        {
-            System.out.println("Problem importing word file...");
-        }
-
-    }
 
     public void clickStartButton(ActionEvent event) {
-        System.out.println("Word Search will display in GUI later...");
-
-        readWordFile();
+        System.out.println("Welcome to a Word Search game!!");
 
         try {
             FXMLLoader boardFXMLLoader = new FXMLLoader();
@@ -64,7 +31,7 @@ public class MainController {
             boardStage.setTitle("Letter Board");
             boardStage.setScene(newBoard);
 
-            boardStage.setX(20);
+            boardStage.setX(500);
             boardStage.setY(20);
             boardStage.show();
         } catch (IOException e) {
@@ -74,7 +41,7 @@ public class MainController {
     }
 
     public void clickExitButton(ActionEvent event) {
-        System.out.println("Word Search will exit when clicked...");
+        System.out.println("Thanks for playing! Goodbye!");
         System.exit(0);
     }
 

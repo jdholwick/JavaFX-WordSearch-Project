@@ -1,5 +1,2 @@
-howdy
-hello
-books
 radiator
 mountain
