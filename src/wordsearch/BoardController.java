@@ -20,8 +20,9 @@ public class BoardController {
     @FXML
     private GridPane gpBoard;
 
+    private int iNumWordsInDict = 5;
     private int[][] placedWordMap = new int[15][15]; // Will hold coordinates of any placed words so they don't get overwritten on the board.
-    private int[][][] hiddenWordCoords = new int[5][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
+    private int[][][] hiddenWordCoords = new int[iNumWordsInDict][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
     private int[][] clickedLetters = new int[2][2]; // Will hold coordinates of first and last letter clicked
     private boolean bFirstClick = true; // Used to determine which letter click we are on. True to begin with because first click is always on first letter of "word."
     private int iHiddenWordIter = 0; // This will be incremented everytime a new word is added to the puzzle. It is used to index the 3d hiddenWordCoords.
@@ -145,24 +146,26 @@ public class BoardController {
     }
 
     public void onLabelMousePress(MouseEvent mouseEvent) {
-        Node source = (Node)mouseEvent.getSource();
-        Integer colCoord = GridPane.getColumnIndex(source);
-        Integer rowCoord = GridPane.getRowIndex(source);
+        if (listFoundWords.size() < iNumWordsInDict) { // As soon as all words are found, a click should just print a message as it does in the else statement below.
 
-        if (bFirstClick == true) {
-            clickedLetters[0][0] = colCoord; // Marks coords for beginning of the word.
-            clickedLetters[0][1] = rowCoord; // Marks coords for beginning of the word.
-            //System.out.println("First click stored in clickedLetters[0][0] and clickedLetters[0][1]: [" + clickedLetters[0][0] + ", " + clickedLetters[0][1] + "]"); // for testing
-            //System.out.printf("First Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue()); // for testing
-            bFirstClick = false; // So next recorded click will be second letter.
-        } else if (bFirstClick == false) {
-            clickedLetters[1][0] = colCoord; // Marks coords for end of the word.
-            clickedLetters[1][1] = rowCoord; // Marks coords for end of the word.
-            //System.out.printf("Second Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue()); // for testing
-            bFirstClick = true; // So next recorded click will start cycle over and record first letter.
+            Node source = (Node) mouseEvent.getSource();
+            Integer colCoord = GridPane.getColumnIndex(source);
+            Integer rowCoord = GridPane.getRowIndex(source);
 
-            //System.out.println("iHiddenWordIter: " + iHiddenWordIter); // for testing
-            for (int i = iHiddenWordIter - 1; i >= 0; i--) { // iHiddenWordIter is subracted by 1 because it is incremented once superfluously at the end of placeRandomWords.
+            if (bFirstClick == true) {
+                clickedLetters[0][0] = colCoord; // Marks coords for beginning of the word.
+                clickedLetters[0][1] = rowCoord; // Marks coords for beginning of the word.
+                //System.out.println("First click stored in clickedLetters[0][0] and clickedLetters[0][1]: [" + clickedLetters[0][0] + ", " + clickedLetters[0][1] + "]"); // for testing
+                //System.out.printf("First Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue()); // for testing
+                bFirstClick = false; // So next recorded click will be second letter.
+            } else if (bFirstClick == false) {
+                clickedLetters[1][0] = colCoord; // Marks coords for end of the word.
+                clickedLetters[1][1] = rowCoord; // Marks coords for end of the word.
+                //System.out.printf("Second Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue()); // for testing
+                bFirstClick = true; // So next recorded click will start cycle over and record first letter.
+
+                //System.out.println("iHiddenWordIter: " + iHiddenWordIter); // for testing
+                for (int i = iHiddenWordIter - 1; i >= 0; i--) { // iHiddenWordIter is subracted by 1 because it is incremented once superfluously at the end of placeRandomWords.
                 /*System.out.println(clickedLetters[0][0]); // for testing
                 System.out.println(clickedLetters[0][1]);
                 System.out.println(clickedLetters[1][0]);
@@ -171,37 +174,37 @@ public class BoardController {
                 System.out.println(hiddenWordCoords[i][0][1]);
                 System.out.println(hiddenWordCoords[i][1][0]);
                 System.out.println(hiddenWordCoords[i][1][1]);*/
-                if (((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
-                        (clickedLetters[0][1] == hiddenWordCoords[i][0][1]) &&
-                        (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
-                        (clickedLetters[1][1] == hiddenWordCoords[i][1][1])) ||
-                        ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
-                                (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
-                                (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
-                                (clickedLetters[0][1] == hiddenWordCoords[i][1][1]))){
+                    if (((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
+                            (clickedLetters[0][1] == hiddenWordCoords[i][0][1]) &&
+                            (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
+                            (clickedLetters[1][1] == hiddenWordCoords[i][1][1])) ||
+                            ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
+                                    (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
+                                    (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
+                                    (clickedLetters[0][1] == hiddenWordCoords[i][1][1]))) {
 
-                    // Maybe more convoluted than it needs to be but twe'll keep track of what's been found by converting coordinates to a string and then back to a long integer number and storing in a list so we can search for that number should the same word be clicked.
-                    String sTemp0 = Integer.toString(hiddenWordCoords[i][0][0]);
-                    String sTemp1 = Integer.toString(hiddenWordCoords[i][0][1]);
-                    String sTemp2 = Integer.toString(hiddenWordCoords[i][1][0]);
-                    String sTemp3 = Integer.toString(hiddenWordCoords[i][1][1]);
-                    String sTempFinal = sTemp0 + sTemp1 + sTemp2 + sTemp3;
+                        // Maybe more convoluted than it needs to be but twe'll keep track of what's been found by converting coordinates to a string and then back to a long integer number and storing in a list so we can search for that number should the same word be clicked.
+                        String sTemp0 = Integer.toString(hiddenWordCoords[i][0][0]);
+                        String sTemp1 = Integer.toString(hiddenWordCoords[i][0][1]);
+                        String sTemp2 = Integer.toString(hiddenWordCoords[i][1][0]);
+                        String sTemp3 = Integer.toString(hiddenWordCoords[i][1][1]);
+                        String sTempFinal = sTemp0 + sTemp1 + sTemp2 + sTemp3;
 
-                    if (listFoundWords.contains(Integer.parseInt(sTempFinal))) {
-                        System.out.println("You already found this word.");
-                    } else {
-                        listFoundWords.add(Integer.parseInt(sTempFinal));
-                        System.out.println("You found a word!");
-                    }
+                        if (listFoundWords.contains(Integer.parseInt(sTempFinal))) {
+                            System.out.println("You already found this word.");
+                        } else {
+                            listFoundWords.add(Integer.parseInt(sTempFinal));
+                            System.out.println("You found a word!");
+                        }
 
 
-                    for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
-                        Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
-                        ((Label)curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
+                        for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
+                            Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
+                            ((Label) curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
 
-                    }
+                        }
 
-                    break;
+                        break;
                 /*} else if ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
                         (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
                         (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
@@ -228,14 +231,16 @@ public class BoardController {
                     }
 
                     break;*/
-                } else if (i == 0) { // This way we don't print this every time we don't match from the list of words on the board.
-                    System.out.println("Not a word... Keep trying.");
+                    } else if (i == 0) { // This way we don't print this every time we don't match from the list of words on the board.
+                        System.out.println("Not a word... Keep trying.");
+                    }
+
                 }
 
             }
-
+        } else {
+            System.out.println("All words found! Thanks for playing!");
         }
-
 
 
     }
