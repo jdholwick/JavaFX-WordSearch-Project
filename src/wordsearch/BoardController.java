@@ -177,8 +177,8 @@ public class BoardController {
                         (clickedLetters[1][1] == hiddenWordCoords[i][1][1])) {
                     System.out.println("You found a word!");
 
-                    for (int j = clickedLetters[0][1]; j <= clickedLetters[1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
-                        Node curNode = getNodeByCoords(gpBoard, clickedLetters[0][0], j);
+                    for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
+                        Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
                         ((Label)curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
 
                     }
@@ -189,6 +189,13 @@ public class BoardController {
                         (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
                         (clickedLetters[0][1] == hiddenWordCoords[i][1][1])) {
                     System.out.println("You found a word!");
+
+                    for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
+                        Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
+                        ((Label)curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
+
+                    }
+
                     break;
                 } else if (i == 0) { // This way we don't print this every time we don't match from the list of words on the board.
                     System.out.println("Not a word... Keep trying.");
