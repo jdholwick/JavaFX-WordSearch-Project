@@ -38,7 +38,7 @@ public class BoardController {
             File wordFile = new File("src\\wordsearch\\words.txt"); // Words are all lowercase for now as I want them to be easily seen on board of uppercase letters while testing.
             Scanner sc = new Scanner(wordFile);
 
-            while (sc.hasNextLine()){
+            for (int i = 0; (i < 4) && sc.hasNextLine(); i++){ // Limit of four is just for testing. We should up that later.
                 listWords.add(sc.nextLine());
             }
 

@@ -4,3 +4,6 @@ skiing
 fountain
 monopoly
 archer
+building
+backpack
+poodle
