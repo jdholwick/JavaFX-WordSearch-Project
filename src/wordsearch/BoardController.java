@@ -137,7 +137,6 @@ public class BoardController {
 
     public void onLabelMousePress(MouseEvent mouseEvent) {
         if (listFoundWords.size() < iNumWordsInDict) { // As soon as all words are found, a click should just print a message as it does in the else statement below.
-
             Node source = (Node) mouseEvent.getSource();
             Integer colCoord = GridPane.getColumnIndex(source);
             Integer rowCoord = GridPane.getRowIndex(source);
@@ -152,7 +151,6 @@ public class BoardController {
                 bFirstClick = true; // So next recorded click will start cycle over and record first letter.
 
                 for (int i = iHiddenWordIter - 1; i >= 0; i--) { // iHiddenWordIter is subracted by 1 because it is incremented once superfluously at the end of placeRandomWords.
-
                     if (((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
                             (clickedLetters[0][1] == hiddenWordCoords[i][0][1]) &&
                             (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
@@ -200,31 +198,29 @@ public class BoardController {
     }
 
     public void onClickStartBtn(MouseEvent mouseEvent) {
-        if (bWordFileRead == false) { // So the file is only loaded once.
+        if (bWordFileRead == false) { // If the word dictionary hasn't been read we know this is the initial run and so after initial run, this will disable the start button. I would like to fix the start button though so that the board resets instead of locking probably.
             readWordFile();
             bWordFileRead = true;
-        }
 
-        iNumWordsInDict = listWords.size();
+            iNumWordsInDict = listWords.size();
 
-        // The following variables of this class are reset for a new game board:
-        placedWordMap = new int[15][15];
-        hiddenWordCoords = new int[iNumWordsInDict][2][2];
-        clickedLetters = new int[2][2];
-        bFirstClick = true;
-        iHiddenWordIter = 0;
-
+            // The following variables of this class are reset for a new game board:
+            placedWordMap = new int[15][15];
+            hiddenWordCoords = new int[iNumWordsInDict][2][2];
+            clickedLetters = new int[2][2];
+            bFirstClick = true;
+            iHiddenWordIter = 0;
 
 
-        putRandLettersOnBoard();
+            putRandLettersOnBoard();
 
-        System.out.println("Find these words:");
+            System.out.println("Find these words:");
 
-        for (int i = 0; i < listWords.size(); i++) { // Prints out the words that need to be found.
-            System.out.println("   " + listWords.get(i));
-        }
+            for (int i = 0; i < listWords.size(); i++) { // Prints out the words that need to be found.
+                System.out.println("   " + listWords.get(i));
+            }
 
-        // This is temporary just so we can see what our placedWordMap looks like. I.e., for testing.
+            // This is temporary just so we can see what our placedWordMap looks like. I.e., for testing.
         /*for (int row = 0; row < 15; row++) {
             for (int col = 0; col < 15; col++) {
                 System.out.print(placedWordMap[col][row] + " ");
@@ -232,7 +228,9 @@ public class BoardController {
             System.out.println("");
         }*/
 
-
+        } else {
+            System.out.println("Can't initiate a board again. Close this board to start a new one from main menu.");
+        }
 
     }
 }
