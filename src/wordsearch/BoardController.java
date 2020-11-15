@@ -20,7 +20,7 @@ public class BoardController {
     @FXML
     private GridPane gpBoard;
 
-    private int iNumWordsInDict = 5;
+    private int iNumWordsInDict = 0;
     private int[][] placedWordMap = new int[15][15]; // Will hold coordinates of any placed words so they don't get overwritten on the board.
     private int[][][] hiddenWordCoords = new int[iNumWordsInDict][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
     private int[][] clickedLetters = new int[2][2]; // Will hold coordinates of first and last letter clicked
@@ -200,17 +200,21 @@ public class BoardController {
     }
 
     public void onClickStartBtn(MouseEvent mouseEvent) {
-        // The following variables of this class are reset for a new game board:
-        placedWordMap = new int[15][15];
-        hiddenWordCoords = new int[5][2][2];
-        clickedLetters = new int[2][2];
-        bFirstClick = true;
-        iHiddenWordIter = 0;
-
         if (bWordFileRead == false) { // So the file is only loaded once.
             readWordFile();
             bWordFileRead = true;
         }
+
+        iNumWordsInDict = listWords.size();
+
+        // The following variables of this class are reset for a new game board:
+        placedWordMap = new int[15][15];
+        hiddenWordCoords = new int[iNumWordsInDict][2][2];
+        clickedLetters = new int[2][2];
+        bFirstClick = true;
+        iHiddenWordIter = 0;
+
+
 
         putRandLettersOnBoard();
 
