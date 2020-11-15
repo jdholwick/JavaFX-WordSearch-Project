@@ -1,5 +1,6 @@
-radiator
 mountain
 hounds
 skiing
-icicle
+fountain
+monopoly
+archer
