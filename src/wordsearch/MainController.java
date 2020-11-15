@@ -36,6 +36,7 @@ public class MainController {
             boardStage.show();
         } catch (IOException e) {
             System.out.println("Window load failed.");
+            System.exit(0);
         }
 
     }

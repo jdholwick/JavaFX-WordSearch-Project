@@ -36,22 +36,15 @@ public class BoardController {
             File wordFile = new File("src\\wordsearch\\words.txt"); // Words are all lowercase for now as I want them to be easily seen on board of uppercase letters while testing.
             Scanner sc = new Scanner(wordFile);
 
-            //List<String> listWords = new ArrayList<String>();
-
             while (sc.hasNextLine()){
                 listWords.add(sc.nextLine());
             }
 
-            //System.out.println("Words that will be in the wordsearch board:"); // for testing
-
-            /*for (int i = 0; i < listWords.size(); i++) { // for testing
-                System.out.println("   " + listWords.get(i));
-            }*/
-
         }
         catch (FileNotFoundException ex)
         {
-            System.out.println("Problem importing word file...");
+            System.out.println("Problem importing word file. Exiting App.");
+            System.exit(0);
         }
 
     }
@@ -134,7 +127,8 @@ public class BoardController {
         for(int i = 0; i < randWord.length(); i++) {
             curNode = getNodeByCoords(gpBoard, randColCoord, randRowCoord + i); // Uses randRowCoord + i to move down for each new letter to add.
 
-            ((Label) curNode).setText((Character.toString(randWord.charAt(i))));
+            ((Label)curNode).setText((Character.toString(randWord.charAt(i))));
+            //((Label)curNode).setStyle("-fx-font-weight: bold;"); // for testing
             placedWordMap[randColCoord][randRowCoord + i] = 1; // A 1 on the map indicates a letter is there.
         }
 
@@ -182,6 +176,13 @@ public class BoardController {
                         (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
                         (clickedLetters[1][1] == hiddenWordCoords[i][1][1])) {
                     System.out.println("You found a word!");
+
+                    for (int j = clickedLetters[0][1]; j <= clickedLetters[1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
+                        Node curNode = getNodeByCoords(gpBoard, clickedLetters[0][0], j);
+                        ((Label)curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
+
+                    }
+
                     break;
                 } else if ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
                         (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
@@ -222,6 +223,12 @@ public class BoardController {
         }
 
         putRandLettersOnBoard();
+
+        System.out.println("Find these words:");
+
+        for (int i = 0; i < listWords.size(); i++) { // Prints out the words that need to be found.
+            System.out.println("   " + listWords.get(i));
+        }
 
         // This is temporary just so we can see what our placedWordMap looks like. I.e., for testing.
         /*for (int row = 0; row < 15; row++) {

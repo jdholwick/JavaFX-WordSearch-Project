@@ -25,9 +25,9 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Button fx:id="btnStart" mnemonicParsing="false" onAction="#clickStartButton" text="Start" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#clickExitButton" text="Exit" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-      <Button fx:id="btnHelp" mnemonicParsing="false" text="Help" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      <Button fx:id="btnStart" mnemonicParsing="false" onAction="#clickStartButton" text="Start" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#clickExitButton" text="Exit" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+      <Button fx:id="btnHelp" mnemonicParsing="false" text="Help" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="5" />
       <Label text="Word Search" GridPane.columnIndex="4" GridPane.rowIndex="1" />
    </children>
 </GridPane>
