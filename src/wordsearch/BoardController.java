@@ -81,19 +81,12 @@ public class BoardController {
             }
         }
 
-        // These are two temporary words I will use to initially put on the board. For testing:
-        /*String word1 = "###########";
-        String word2 = "*********";*/
 
         // Places words randomly on board
         for (int i = 0; i < listWords.size(); i++) { // for testing
                 placeRandomWord(listWords.get(i));
         }
 
-        /*
-        placeRandomWord(word1); // for testing
-        placeRandomWord(word2);
-*/
 
     }
 
@@ -137,10 +130,7 @@ public class BoardController {
         hiddenWordCoords[iHiddenWordIter][0][1] = randRowCoord; // Marks coords for beginning of the word.
         hiddenWordCoords[iHiddenWordIter][1][0] = randColCoord; // Marks coords for end of the word.
         hiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord + randWord.length() - 1; // Marks coords for end of the word. Subtract 1 to account for randRowCoord being the first letter of the word.
-        /*System.out.println(hiddenWordCoords[iHiddenWordIter][0][0]); // for testing
-        System.out.println(hiddenWordCoords[iHiddenWordIter][0][1]);
-        System.out.println(hiddenWordCoords[iHiddenWordIter][1][0]);
-        System.out.println(hiddenWordCoords[iHiddenWordIter][1][1]);*/
+
         iHiddenWordIter++; // When next word is placed this will ensure it takes an different spot in the array.
 
     }
@@ -155,25 +145,14 @@ public class BoardController {
             if (bFirstClick == true) {
                 clickedLetters[0][0] = colCoord; // Marks coords for beginning of the word.
                 clickedLetters[0][1] = rowCoord; // Marks coords for beginning of the word.
-                //System.out.println("First click stored in clickedLetters[0][0] and clickedLetters[0][1]: [" + clickedLetters[0][0] + ", " + clickedLetters[0][1] + "]"); // for testing
-                //System.out.printf("First Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue()); // for testing
                 bFirstClick = false; // So next recorded click will be second letter.
             } else if (bFirstClick == false) {
                 clickedLetters[1][0] = colCoord; // Marks coords for end of the word.
                 clickedLetters[1][1] = rowCoord; // Marks coords for end of the word.
-                //System.out.printf("Second Letter: You clicked a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue()); // for testing
                 bFirstClick = true; // So next recorded click will start cycle over and record first letter.
 
-                //System.out.println("iHiddenWordIter: " + iHiddenWordIter); // for testing
                 for (int i = iHiddenWordIter - 1; i >= 0; i--) { // iHiddenWordIter is subracted by 1 because it is incremented once superfluously at the end of placeRandomWords.
-                /*System.out.println(clickedLetters[0][0]); // for testing
-                System.out.println(clickedLetters[0][1]);
-                System.out.println(clickedLetters[1][0]);
-                System.out.println(clickedLetters[1][1]);
-                System.out.println(hiddenWordCoords[i][0][0]);
-                System.out.println(hiddenWordCoords[i][0][1]);
-                System.out.println(hiddenWordCoords[i][1][0]);
-                System.out.println(hiddenWordCoords[i][1][1]);*/
+
                     if (((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
                             (clickedLetters[0][1] == hiddenWordCoords[i][0][1]) &&
                             (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
@@ -205,32 +184,7 @@ public class BoardController {
                         }
 
                         break;
-                /*} else if ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
-                        (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
-                        (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
-                        (clickedLetters[0][1] == hiddenWordCoords[i][1][1])) {
 
-                    // Maybe more convoluted than it needs to be but twe'll keep track of what's been found by converting coordinates to a string and then back to a long integer number and storing in a list so we can search for that number should the same word be clicked.
-                    String sTemp0 = Integer.toString(hiddenWordCoords[i][0][0]);
-                    String sTemp1 = Integer.toString(hiddenWordCoords[i][0][1]);
-                    String sTemp2 = Integer.toString(hiddenWordCoords[i][1][0]);
-                    String sTemp3 = Integer.toString(hiddenWordCoords[i][1][1]);
-                    String sTempFinal = sTemp0 + sTemp1 + sTemp2 + sTemp3;
-
-                    if (listFoundWords.contains(Integer.parseInt(sTempFinal))) {
-                        System.out.println("You already found this word.");
-                    } else {
-                        listFoundWords.add(Integer.parseInt(sTempFinal));
-                        System.out.println("You found a word!");
-                    }
-
-                    for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
-                        Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
-                        ((Label)curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
-
-                    }
-
-                    break;*/
                     } else if (i == 0) { // This way we don't print this every time we don't match from the list of words on the board.
                         System.out.println("Not a word... Keep trying.");
                     }
@@ -244,13 +198,6 @@ public class BoardController {
 
 
     }
-
-    /*public void onLabelMouseRelease(MouseEvent mouseEvent) { // The problem here is it keeps giving me coordinate of originally clicked label.
-        Node source = (Node)mouseEvent.getSource();
-        Integer colCoord = GridPane.getColumnIndex(source);
-        Integer rowCoord = GridPane.getRowIndex(source);
-        System.out.printf("You release mouse on a letter located at column and row, [%d, %d].%n", colCoord.intValue(), rowCoord.intValue());
-    }*/
 
     public void onClickStartBtn(MouseEvent mouseEvent) {
         // The following variables of this class are reset for a new game board:
