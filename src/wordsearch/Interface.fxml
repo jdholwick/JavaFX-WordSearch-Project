@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <GridPane fx:id="gpInterface" alignment="center" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wordsearch.MainController">
    <columnConstraints>
@@ -25,9 +26,12 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Button fx:id="btnStart" mnemonicParsing="false" onAction="#clickStartButton" text="Start" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#clickExitButton" text="Exit" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="5" />
-      <Button fx:id="btnHelp" mnemonicParsing="false" text="Help" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-      <Label text="Word Search" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Button fx:id="btnStart" mnemonicParsing="false" onAction="#clickStartButton" prefHeight="25.0" prefWidth="164.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button fx:id="btnExit" mnemonicParsing="false" onAction="#clickExitButton" prefHeight="25.0" prefWidth="152.0" text="Exit" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+      <Button fx:id="btnHelp" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Help" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      <Label alignment="CENTER" prefHeight="27.0" prefWidth="301.0" text="Word Search" textAlignment="CENTER" textFill="#a81717" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font></Label>
    </children>
 </GridPane>
