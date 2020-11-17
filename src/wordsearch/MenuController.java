@@ -17,6 +17,9 @@ public class MenuController {
     //@FXML
     //private GridPane gpInterface;
 
+    MenuController() {
+
+    }
 
     public void clickStartButton(ActionEvent event) {
         System.out.println("Welcome to a Word Search game!!");
