@@ -28,7 +28,7 @@ public class BoardController {
     private int iHiddenWordIter = 0; // This will be incremented everytime a new word is added to the puzzle. It is used to index the 3d hiddenWordCoords.
     private boolean bWordFileRead = false; // Used to ensure we only load word dictionary once.
 
-    private List<Integer> listFoundWords = new ArrayList<Integer>();
+    private List<Integer> listFoundWords = new ArrayList<Integer>(); // Will contain a list of coordinates of found words to compare to coordinates if same word is selected again. Simply for notification that word was already found.
     private List<String> listWords = new ArrayList<String>();
 
     public void readWordFile() {
@@ -53,9 +53,9 @@ public class BoardController {
 
     public Node getNodeByCoords(GridPane gridPane, int column, int row) { // This method is the start of an attempt to get each label off the gridpane by column and row.
         Node curNode = null;
-        ObservableList<Node> children = gridPane.getChildren(); // creates ObservableList of Nodes from the gridPane rows and columns
+        ObservableList<Node> children = gridPane.getChildren(); // Creates ObservableList of Nodes from the gridPane rows and columns.
 
-        for (Node node : children) { // should iterate over each element in the ObservableList, children, until the one from parameters row and column is found
+        for (Node node : children) { // Should iterate over each element in the ObservableList, children, until the one from parameters row and column is found.
             if (gridPane.getColumnIndex(node) == column && gridPane.getRowIndex(node) == row) {
                 curNode = node;
                 break;
