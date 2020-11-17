@@ -17,7 +17,7 @@ public class MenuController {
     //@FXML
     //private GridPane gpInterface;
 
-    MenuController() {
+    public MenuController() {
 
     }
 
