@@ -137,7 +137,6 @@ public class BoardController {
 
             for(int i = 0; i <= randWord.length(); i++) {
                 if ((sWordDirection == "VERTICAL") && (iPlacedWordMap[randColCoord][randRowCoord + i] == 1)) {
-                    //System.out.println("Overlap found!"); // for testing
                     randRowCoord = 100; // Forces new rands to be found when loop restarts.
                     randColCoord = 100; // Forces new rands to be found when loop restarts.
                     bWordCross = true;
@@ -145,7 +144,6 @@ public class BoardController {
                 }
 
                 if ((sWordDirection == "HORIZONTAL") && (iPlacedWordMap[randColCoord + i][randRowCoord] == 1)) {
-                    //System.out.println("Overlap found!"); // for testing
                     randRowCoord = 100; // Forces new rands to be found when loop restarts.
                     randColCoord = 100; // Forces new rands to be found when loop restarts.
                     bWordCross = true;
