@@ -21,7 +21,6 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="16.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="16.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="543.0" minWidth="10.0" prefWidth="16.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="42.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="16.0" vgrow="SOMETIMES" />
@@ -956,6 +955,6 @@
          <font>
             <Font size="24.0" />
          </font></Label>
-      <Button fx:id="btnInit" mnemonicParsing="false" onMouseClicked="#onClickStartBtn" text="Start" GridPane.columnIndex="15" GridPane.rowIndex="15" />
+      <Button fx:id="btnInit" mnemonicParsing="false" onMouseClicked="#onClickStartBtn" prefHeight="25.0" prefWidth="121.0" text="Start" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.columnSpan="2147483647" GridPane.rowIndex="15" />
    </children>
 </GridPane>
