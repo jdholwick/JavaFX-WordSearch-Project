@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class MainController {
+public class MenuController {
 
     @FXML
     private GridPane gpInterface;
@@ -22,7 +22,7 @@ public class MainController {
 
         try {
             FXMLLoader boardFXMLLoader = new FXMLLoader();
-            Parent board = boardFXMLLoader.load(getClass().getResource("Board.fxml"));
+            Parent board = boardFXMLLoader.load(getClass().getResource("BoardInterface.fxml"));
 
             Scene newBoard = new Scene(board);
 

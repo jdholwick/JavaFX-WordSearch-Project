@@ -15,24 +15,52 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-public class BoardController {
-
-    public GridPane gpBoard;
-
-    GameModel theGameModel = new GameModel();
-
-    private boolean bRunOnce = false;
-/*
+public class GameModel extends BoardController{
     private int iNumWordsInDict = 0;
     private int[][] placedWordMap = new int[15][15]; // Will hold coordinates of any placed words so they don't get overwritten on the board.
     private int[][][] hiddenWordCoords = new int[iNumWordsInDict][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
     private int[][] clickedLetters = new int[2][2]; // Will hold coordinates of first and last letter clicked
     private boolean bFirstClick = true; // Used to determine which letter click we are on. True to begin with because first click is always on first letter of "word."
     private int iHiddenWordIter = 0; // This will be incremented everytime a new word is added to the puzzle. It is used to index the 3d hiddenWordCoords.
-    private boolean bWordFileRead = false; // Used to ensure we only load word dictionary once.
+    //private boolean bWordFileRead = false; // Now superfluous, but may be needed later. // Used to ensure we only load word dictionary once.
 
     private List<Integer> listFoundWords = new ArrayList<Integer>();
     private List<String> listWords = new ArrayList<String>();
+
+    public void initGameModel() {
+        //if (bWordFileRead == false) { // Now superfluous, but may be needed later. // If the word dictionary hasn't been read we know this is the initial run and so after initial run, this will disable the start button. I would like to fix the start button though so that the board resets instead of locking probably.
+        readWordFile();
+        iNumWordsInDict = listWords.size();
+
+            /*bWordFileRead = true; // Now superfluous, but may be needed later.
+
+            // The following variables of this class are reset for a new game board:
+            placedWordMap = new int[15][15];
+            hiddenWordCoords = new int[iNumWordsInDict][2][2];
+            clickedLetters = new int[2][2];
+            bFirstClick = true;
+            iHiddenWordIter = 0;*/
+
+        putRandLettersOnBoard();
+
+        System.out.println("Find these words:");
+
+        for (int i = 0; i < listWords.size(); i++) { // Prints out the words that need to be found.
+            System.out.println("   " + listWords.get(i));
+        }
+
+        // This is temporary just so we can see what our placedWordMap looks like. I.e., for testing.
+        /*for (int row = 0; row < 15; row++) {
+            for (int col = 0; col < 15; col++) {
+                System.out.print(placedWordMap[col][row] + " ");
+            }
+            System.out.println("");
+        }*/
+
+        /*} else { // Kept in BoardController.
+            System.out.println("Can't initiate a board again. Close this board to start a new one from main menu.");
+        }*/
+    }
 
     public void readWordFile() {
 
@@ -167,7 +195,7 @@ public class BoardController {
             hiddenWordCoords[iHiddenWordIter][1][0] = randColCoord + randWord.length() - 1; // Marks coords for end of HORIZONTAL word. Subtract 1 to account for randColCoord being the first letter of the word.
             hiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord; // Marks coords for end of HORIZONTAL word.
         }
-            iHiddenWordIter++; // When next word is placed this will ensure it takes a different spot in the array.
+        iHiddenWordIter++; // When next word is placed this will ensure it takes a different spot in the array.
 
     }
 
@@ -241,46 +269,5 @@ public class BoardController {
 
 
     }
-*/
-    public void onClickStartBtn(MouseEvent mouseEvent) {
-        /* if (bWordFileRead == false) { // moved to GameModel // If the word dictionary hasn't been read we know this is the initial run and so after initial run, this will disable the start button. I would like to fix the start button though so that the board resets instead of locking probably.
-            readWordFile();
-            bWordFileRead = true;
 
-            iNumWordsInDict = listWords.size();
-
-            // The following variables of this class are reset for a new game board:
-            placedWordMap = new int[15][15];
-            hiddenWordCoords = new int[iNumWordsInDict][2][2];
-            clickedLetters = new int[2][2];
-            bFirstClick = true;
-            iHiddenWordIter = 0;*/
-
-            if (bRunOnce == false) {
-                theGameModel.initGameModel();
-                bRunOnce = true;
-            } else {
-                System.out.println("Can't initiate a board again. Close this board to start a new one from main menu.");
-            }
-
-
-            /*System.out.println("Find these words:"); // moved to GameModel
-
-            for (int i = 0; i < listWords.size(); i++) { // Prints out the words that need to be found.
-                System.out.println("   " + listWords.get(i));
-            }*/
-
-            // This is temporary just so we can see what our placedWordMap looks like. I.e., for testing.
-        /*for (int row = 0; row < 15; row++) {
-            for (int col = 0; col < 15; col++) {
-                System.out.print(placedWordMap[col][row] + " ");
-            }
-            System.out.println("");
-        }*/
-
-        /*} else { // Moved up.
-            System.out.println("Can't initiate a board again. Close this board to start a new one from main menu.");
-        }*/
-
-    }
 }
