@@ -20,16 +20,29 @@ public class BoardController {
     @FXML
     private GridPane gpBoard;
 
-    private int iNumWordsInDict = 0;
-    private int[][] placedWordMap = new int[15][15]; // Will hold coordinates of any placed words so they don't get overwritten on the board.
-    private int[][][] hiddenWordCoords = new int[iNumWordsInDict][2][2]; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
-    private int[][] clickedLetters = new int[2][2]; // Will hold coordinates of first and last letter clicked
-    private boolean bFirstClick = true; // Used to determine which letter click we are on. True to begin with because first click is always on first letter of "word."
-    private int iHiddenWordIter = 0; // This will be incremented everytime a new word is added to the puzzle. It is used to index the 3d hiddenWordCoords.
-    private boolean bWordFileRead = false; // Used to ensure we only load word dictionary once.
+    private int iNumWordsInDict; // Will hold a record of how many words are in the dictionary.
+    private int[][] iPlacedWordMap; // Will hold coordinates of any placed words so they don't get overwritten on the board.
+    private int[][][] iHiddenWordCoords; // Will hold specific coordinates of each word on grid so they can be matched with coordinates of clicks. 3d so that each word can have two sets of coordinates stored for it.
+    private int[][] iClickedLetters; // Will hold coordinates of first and last letter clicked.
+    private boolean bFirstClick; // Used to determine which letter click we are on. True to begin with because first click is always on first letter of "word."
+    private int iHiddenWordIter; // This will be incremented everytime a new word is added to the puzzle. It is used to index the 3d hiddenWordCoords.
+    private boolean bWordFileRead; // Used to ensure we only load word dictionary once.
 
     private List<Integer> listFoundWords = new ArrayList<Integer>(); // Will contain a list of coordinates of found words to compare to coordinates if same word is selected again. Simply for notification that word was already found.
-    private List<String> listWords = new ArrayList<String>();
+    private List<String> listWords = new ArrayList<String>(); // Will contain a list of the words taken from the dictionary.
+
+    public BoardController() {
+        iNumWordsInDict = 0;
+        iPlacedWordMap = new int[15][15];
+        iHiddenWordCoords = new int[iNumWordsInDict][2][2];
+        iClickedLetters = new int[2][2];
+        bFirstClick = true;
+        iHiddenWordIter = 0;
+        bWordFileRead = false;
+
+        listFoundWords = new ArrayList<Integer>();
+        listWords = new ArrayList<String>();
+    }
 
     public void readWordFile() {
 
@@ -123,7 +136,7 @@ public class BoardController {
             bWordCross = false; // Set to false again here to enter for-loop that will check for word crossing.
 
             for(int i = 0; i <= randWord.length(); i++) {
-                if ((sWordDirection == "VERTICAL") && (placedWordMap[randColCoord][randRowCoord + i] == 1)) {
+                if ((sWordDirection == "VERTICAL") && (iPlacedWordMap[randColCoord][randRowCoord + i] == 1)) {
                     //System.out.println("Overlap found!"); // for testing
                     randRowCoord = 100; // Forces new rands to be found when loop restarts.
                     randColCoord = 100; // Forces new rands to be found when loop restarts.
@@ -131,7 +144,7 @@ public class BoardController {
                     break;
                 }
 
-                if ((sWordDirection == "HORIZONTAL") && (placedWordMap[randColCoord + i][randRowCoord] == 1)) {
+                if ((sWordDirection == "HORIZONTAL") && (iPlacedWordMap[randColCoord + i][randRowCoord] == 1)) {
                     //System.out.println("Overlap found!"); // for testing
                     randRowCoord = 100; // Forces new rands to be found when loop restarts.
                     randColCoord = 100; // Forces new rands to be found when loop restarts.
@@ -145,24 +158,24 @@ public class BoardController {
             if (sWordDirection == "VERTICAL") {
                 curNode = getNodeByCoords(gpBoard, randColCoord, randRowCoord + i); // Uses randRowCoord + i to move down for each new letter to add.
                 ((Label)curNode).setText((Character.toString(randWord.charAt(i))));
-                placedWordMap[randColCoord][randRowCoord + i] = 1; // A 1 on the map indicates a letter is there.
+                iPlacedWordMap[randColCoord][randRowCoord + i] = 1; // A 1 on the map indicates a letter is there.
             } else if (sWordDirection == "HORIZONTAL") {
                 curNode = getNodeByCoords(gpBoard, randColCoord + i, randRowCoord); // Uses randColCoord + i to move over for each new letter to add.
                 ((Label)curNode).setText((Character.toString(randWord.charAt(i))));
-                placedWordMap[randColCoord + i][randRowCoord] = 1; // A 1 on the map indicates a letter is there.
+                iPlacedWordMap[randColCoord + i][randRowCoord] = 1; // A 1 on the map indicates a letter is there.
             }
 
 
         }
-        hiddenWordCoords[iHiddenWordIter][0][0] = randColCoord; // Marks coords for beginning of VERTICAL or HORIZONTAL word.
-        hiddenWordCoords[iHiddenWordIter][0][1] = randRowCoord; // Marks coords for beginning of VERTICAL or HORIZONTAL word.
+        iHiddenWordCoords[iHiddenWordIter][0][0] = randColCoord; // Marks coords for beginning of VERTICAL or HORIZONTAL word.
+        iHiddenWordCoords[iHiddenWordIter][0][1] = randRowCoord; // Marks coords for beginning of VERTICAL or HORIZONTAL word.
 
         if (sWordDirection == "VERTICAL") {
-            hiddenWordCoords[iHiddenWordIter][1][0] = randColCoord; // Marks coords for end of VERTICAL word.
-            hiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord + randWord.length() - 1; // Marks coords for end of VERTICAL word. Subtract 1 to account for randRowCoord being the first letter of the word.
+            iHiddenWordCoords[iHiddenWordIter][1][0] = randColCoord; // Marks coords for end of VERTICAL word.
+            iHiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord + randWord.length() - 1; // Marks coords for end of VERTICAL word. Subtract 1 to account for randRowCoord being the first letter of the word.
         } else if (sWordDirection == "HORIZONTAL") {
-            hiddenWordCoords[iHiddenWordIter][1][0] = randColCoord + randWord.length() - 1; // Marks coords for end of HORIZONTAL word. Subtract 1 to account for randColCoord being the first letter of the word.
-            hiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord; // Marks coords for end of HORIZONTAL word.
+            iHiddenWordCoords[iHiddenWordIter][1][0] = randColCoord + randWord.length() - 1; // Marks coords for end of HORIZONTAL word. Subtract 1 to account for randColCoord being the first letter of the word.
+            iHiddenWordCoords[iHiddenWordIter][1][1] = randRowCoord; // Marks coords for end of HORIZONTAL word.
         }
         iHiddenWordIter++; // When next word is placed this will ensure it takes a different spot in the array.
 
@@ -175,29 +188,29 @@ public class BoardController {
             Integer rowCoord = GridPane.getRowIndex(source);
 
             if (bFirstClick == true) {
-                clickedLetters[0][0] = colCoord; // Marks coords for beginning of the word.
-                clickedLetters[0][1] = rowCoord; // Marks coords for beginning of the word.
+                iClickedLetters[0][0] = colCoord; // Marks coords for beginning of the word.
+                iClickedLetters[0][1] = rowCoord; // Marks coords for beginning of the word.
                 bFirstClick = false; // So next recorded click will be second letter.
             } else if (bFirstClick == false) {
-                clickedLetters[1][0] = colCoord; // Marks coords for end of the word.
-                clickedLetters[1][1] = rowCoord; // Marks coords for end of the word.
+                iClickedLetters[1][0] = colCoord; // Marks coords for end of the word.
+                iClickedLetters[1][1] = rowCoord; // Marks coords for end of the word.
                 bFirstClick = true; // So next recorded click will start cycle over and record first letter.
 
                 for (int i = iHiddenWordIter - 1; i >= 0; i--) { // iHiddenWordIter is subracted by 1 because it is incremented once superfluously at the end of placeRandomWord.
-                    if (((clickedLetters[0][0] == hiddenWordCoords[i][0][0]) &&
-                            (clickedLetters[0][1] == hiddenWordCoords[i][0][1]) &&
-                            (clickedLetters[1][0] == hiddenWordCoords[i][1][0]) &&
-                            (clickedLetters[1][1] == hiddenWordCoords[i][1][1])) ||
-                            ((clickedLetters[1][0] == hiddenWordCoords[i][0][0]) &&
-                                    (clickedLetters[1][1] == hiddenWordCoords[i][0][1]) &&
-                                    (clickedLetters[0][0] == hiddenWordCoords[i][1][0]) &&
-                                    (clickedLetters[0][1] == hiddenWordCoords[i][1][1]))) {
+                    if (((iClickedLetters[0][0] == iHiddenWordCoords[i][0][0]) &&
+                            (iClickedLetters[0][1] == iHiddenWordCoords[i][0][1]) &&
+                            (iClickedLetters[1][0] == iHiddenWordCoords[i][1][0]) &&
+                            (iClickedLetters[1][1] == iHiddenWordCoords[i][1][1])) ||
+                            ((iClickedLetters[1][0] == iHiddenWordCoords[i][0][0]) &&
+                                    (iClickedLetters[1][1] == iHiddenWordCoords[i][0][1]) &&
+                                    (iClickedLetters[0][0] == iHiddenWordCoords[i][1][0]) &&
+                                    (iClickedLetters[0][1] == iHiddenWordCoords[i][1][1]))) {
 
                         // Maybe more convoluted than it needs to be but we'll keep track of what's been found by converting coordinates to a string and then back to a long integer number and storing in a list so we can search for that number should the same word be clicked.
-                        String sTemp0 = Integer.toString(hiddenWordCoords[i][0][0]); // [0][0] == column
-                        String sTemp1 = Integer.toString(hiddenWordCoords[i][0][1]); // [0][1] == row
-                        String sTemp2 = Integer.toString(hiddenWordCoords[i][1][0]); // [1][0] == column
-                        String sTemp3 = Integer.toString(hiddenWordCoords[i][1][1]); // [1][1] == row
+                        String sTemp0 = Integer.toString(iHiddenWordCoords[i][0][0]); // [0][0] == column
+                        String sTemp1 = Integer.toString(iHiddenWordCoords[i][0][1]); // [0][1] == row
+                        String sTemp2 = Integer.toString(iHiddenWordCoords[i][1][0]); // [1][0] == column
+                        String sTemp3 = Integer.toString(iHiddenWordCoords[i][1][1]); // [1][1] == row
                         String sTempFinal = sTemp0 + sTemp1 + sTemp2 + sTemp3;
 
                         if (listFoundWords.contains(Integer.parseInt(sTempFinal))) {
@@ -208,15 +221,15 @@ public class BoardController {
                         }
 
 
-                        if (hiddenWordCoords[i][0][0] == hiddenWordCoords[i][1][0]){ // I.e., if columns are equal.
-                            for (int j = hiddenWordCoords[i][0][1]; j <= hiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
-                                Node curNode = getNodeByCoords(gpBoard, hiddenWordCoords[i][0][0], j);
+                        if (iHiddenWordCoords[i][0][0] == iHiddenWordCoords[i][1][0]){ // I.e., if columns are equal.
+                            for (int j = iHiddenWordCoords[i][0][1]; j <= iHiddenWordCoords[i][1][1]; j++) { // Will change the appearance of a word once you find it so it stands out.
+                                Node curNode = getNodeByCoords(gpBoard, iHiddenWordCoords[i][0][0], j);
                                 ((Label)curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
 
                             }
-                        } else if (hiddenWordCoords[i][0][1] == hiddenWordCoords[i][1][1]) { // I.e., if rows are equal.
-                            for (int j = hiddenWordCoords[i][0][0]; j <= hiddenWordCoords[i][1][0]; j++) { // Will change the appearance of a word once you find it so it stands out.
-                                Node curNode = getNodeByCoords(gpBoard, j, hiddenWordCoords[i][0][1]);
+                        } else if (iHiddenWordCoords[i][0][1] == iHiddenWordCoords[i][1][1]) { // I.e., if rows are equal.
+                            for (int j = iHiddenWordCoords[i][0][0]; j <= iHiddenWordCoords[i][1][0]; j++) { // Will change the appearance of a word once you find it so it stands out.
+                                Node curNode = getNodeByCoords(gpBoard, j, iHiddenWordCoords[i][0][1]);
                                 ((Label) curNode).setStyle("-fx-font-weight: bold; -fx-text-fill: #df6124;");
 
                             }
@@ -247,9 +260,9 @@ public class BoardController {
             iNumWordsInDict = listWords.size();
 
             // The following variables of this class are reset for a new game board:
-            placedWordMap = new int[15][15];
-            hiddenWordCoords = new int[iNumWordsInDict][2][2];
-            clickedLetters = new int[2][2];
+            iPlacedWordMap = new int[15][15];
+            iHiddenWordCoords = new int[iNumWordsInDict][2][2];
+            iClickedLetters = new int[2][2];
             bFirstClick = true;
             iHiddenWordIter = 0;
 
